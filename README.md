@@ -2,10 +2,7 @@
 
 ## Jogo Batalha Naval em C
 
-Há um tabuleiro de 5x5, ou seja, 25 blocos. Há 3 navios escondidos (um em cada bloco).
-O objetivo do jogo é descobrir onde estão estes navios e acertá-los.
-A cada tiro dado é dito se você acertou algum navio. Caso tenha errado, é dito quantos navios existem naquela linha e naquela coluna.
-O jogo só acaba quando você descobrir e afundar os 3 navios.
+O tamanho do tabuleiro é definido pelo jogador, que deve informar o tamanho logo no início do jogo. Há 3 navios escondidos (um em cada bloco). O objetivo do jogo é descobrir onde estão estes navios e acertá-los. A cada tiro dado é dito se você acertou algum navio. Caso tenha errado, é dito quantos navios existem naquela linha e naquela coluna. O jogo só acaba quando você descobrir e afundar os 3 navios.
 
 ### Legenda pro usuário:
 
@@ -22,9 +19,7 @@ Depois é só esperar pra ver se acertou, ou a dica.
 
 ### Para os programadores C:
 
-O tabuleiro 5x5 é de inteiros. Ele é inicializado com valores '-1'.
-A cada tiro ele é atualizado, dependendo se o usuário acertou ou errou. Esses números servirão para exibir '~', '*' ou 'X' para o usuário.
-Também servirão para exibir as dicas.
+O tabuleiro é formado de números inteiros. Ele é inicializado com valores '-1'. A cada tiro ele é atualizado, dependendo se o usuário acertou ou errou. Esses números servirão para exibir '~', '*' ou '#' para o usuário. Também servirão para exibir as dicas.
 
 ### Legenda do tabuleiro:
 
@@ -32,7 +27,7 @@ Também servirão para exibir as dicas.
 
  0 : o tiro foi dado e não havia nada (*)
 
- 1 : o usuário atirou e tinha um navio lá (X)
+ 1 : o usuário atirou e tinha um navio lá (#)
 
  ### Compilando na linha de Compilando
 
