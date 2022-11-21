@@ -85,7 +85,9 @@ void criarNavios(int navios[][2])
         navios[navio][0] = rand() % 5;
         navios[navio][1] = rand() % 5;
 
+        // verifica se o navio já não foi criado antes
         for (anterior = 0; anterior < navio; anterior++) {
+            // se essa posição já foi usada ele cria outra
             if ((navios[navio][0] == navios[anterior][0]) && (navios[navio][1] == navios[anterior][1])) {
                 do {
                     navios[navio][0] = rand() % 5;
@@ -166,7 +168,7 @@ int main(void)
 
     } while (acertos != 3);
 
-    printf("\n\n\nJogo terminado. Acertou 3 navios em %d tentativas", tentativas);
+    printf("\n\n\nJogo terminado. Acertou 3 navios em %d tentativas\n", tentativas);
     exibirTabuleiro(tabuleiro);
 
     return 0;
