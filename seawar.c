@@ -2,58 +2,33 @@
 #include <stdlib.h>
 #include <time.h>
 
-/*
-
-Há um tabuleiro de 5x5, ou seja, 25 blocos. Há 3 navios escondidos (um em cada bloco).
-O objetivo do jogar é descobrir onde estão estes navios e acertá-los.
-A cada tiro dado é dito se você acertou algum navio. Caso tenha errado, é dito quantos navios existem naquela linha e naquela coluna.
-O jogo só acaba quando você descobrir e afundar os 3 navios.
-
-Legenda pro usuário:
-~ : água no bloco. Ainda não foi dado tiro.
-* : tiro dado, não há nada ali.
-X : tiro dado, havia um navio ali.
-
-Como jogar:
-A cada rodada, entre com dois números: o número da linha e o número da coluna onde quer dar o tiro.
-Depois é só esperar pra ver se acertou, ou a dica.
-
-Para os programadores C:
-O tabuleiro 5x5 é de inteiros. Ele é inicializado com valores '-1'.
-A cada tiro ele é atualizado, dependendo se o usuário acertou ou errou. Esses números servirão para exibir '~', '*' ou 'X' para o usuário.
-Também servirão para exibir as dicas.
-
-Legenda do tabuleiro:
--1 : nenhum tiro foi dado naquele bloco (~)
- 0 : o tiro foi dado e não havia nada (*)
- 1 : o usuário atirou e tinha um navio lá (X)
-
-*/
-
-int linhas;
-int colunas;
+int linhas = 2;
+int colunas = 2;
 
 // Inicializa o tabuleiro com -1 em todas as posições
-void inicializarTabuleiro(int tab[][5])
+void inicializarTabuleiro(int tab[linhas][colunas])
 {
     int coluna, linha;
     
-    for (linha = 0; linha < 5; linha++) {
-        for (coluna = 0; coluna < 5; coluna++) {
+    for (linha = 0; linha < linhas; linha++) {
+        for (coluna = 0; coluna < colunas; coluna++) {
             tab[linha][coluna] = -1;
         }
     }
 }
 
 // exibe o tabuleiro
-void exibirTabuleiro(int tab[][5])
+void exibirTabuleiro(int tab[linhas][colunas])
 {
-    int coluna, linha;
+    int contador, coluna, linha;
 
-    printf("  1  2  3  4  5 \n");
-    for (linha = 0; linha < 5; linha++) {
+    for (contador = 0; contador < colunas; contador++) {
+        printf("  %d", contador + 1);
+    }
+    printf("\n");
+    for (linha = 0; linha < linhas; linha++) {
         printf("%d", linha + 1);
-        for (coluna = 0; coluna < 5; coluna++) {
+        for (coluna = 0; coluna < colunas; coluna++) {
             if (tab[linha][coluna] == -1) {
                 printf(" ~ ");
             } else if (tab[linha][coluna] == 0) {
@@ -67,7 +42,7 @@ void exibirTabuleiro(int tab[][5])
 }
 
 // altera o tabuleiro
-void alterarTabuleiro(int tiro[2], int navios[][2], int tabuleiro[][5])
+void alterarTabuleiro(int tiro[2], int navios[][2], int tabuleiro[][colunas])
 {
     if(acertou(tiro, navios)) {
         tabuleiro[tiro[0]][tiro[1]]=1;
@@ -144,7 +119,13 @@ void dica(int tiro[2], int navios[][2], int tentativa)
 
 int main(void)
 {
-    int tabuleiro[5][5], navios[3][2], tiro[2], tentativas=0, acertos=0;
+    printf("Informe a largura do mapa:");
+    scanf("%d", &linhas);
+
+    printf("Informe a altura do mapa:");
+    scanf("%d", &colunas);
+
+    int tabuleiro[linhas][colunas], navios[3][2], tiro[2], tentativas=0, acertos=0;
 
     inicializarTabuleiro(tabuleiro);
     criarNavios(navios);
